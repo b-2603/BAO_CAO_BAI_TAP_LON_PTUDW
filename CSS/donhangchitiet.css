@@ -1,0 +1,125 @@
+body {
+  font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+  background-color: #f4f7ff;
+  color: #0f172a;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1100px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 14px;
+  border: 1px solid rgba(31, 107, 255, 0.12);
+  box-shadow: 0 16px 32px rgba(2, 6, 23, 0.12);
+  margin-bottom: 70px;
+}
+
+h2 {
+  font-size: 30px;
+  color: #0f172a;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.invoice-info {
+  margin-bottom: 20px;
+  font-size: 15px;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.1);
+  padding-bottom: 10px;
+}
+
+.invoice-info .info-group label {
+  font-weight: bold;
+  color: #0f172a;
+  font-size: 14px;
+}
+
+.invoice-info .info-group p {
+  margin: 0;
+  color: #475569;
+  font-size: 14px;
+}
+
+.product-table th,
+.product-table td {
+  text-align: center;
+  vertical-align: middle;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+
+.product-table th {
+  background: linear-gradient(135deg, #1f6bff 0%, #14f1c9 100%);
+  color: #0b1020;
+  font-weight: bold;
+}
+
+.product-table td {
+  background-color: #fff;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.product-table td .product-name {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.total-price {
+  font-size: 24px;
+  font-weight: 800;
+  color: #1f6bff;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.payment-methods {
+  padding: 16px;
+}
+
+.payment-methods input[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #0b1020;
+  border: none;
+  margin-bottom: 10px;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #1f6bff 0%, #14f1c9 100%);
+  box-shadow: 0 10px 20px rgba(31, 107, 255, 0.25);
+}
+
+.payment-methods input[type="submit"]:hover {
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  .product-table th,
+  .product-table td {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  .total-price {
+    font-size: 16px;
+  }
+
+  .payment-methods input[type="submit"] {
+    font-size: 13px;
+    padding: 10px;
+  }
+}

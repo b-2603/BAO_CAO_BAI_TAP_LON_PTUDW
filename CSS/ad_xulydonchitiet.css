@@ -1,0 +1,108 @@
+body {
+  font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+  padding: 20px;
+  color: #0f172a;
+  background: #f4f7ff;
+}
+
+.order-container {
+  max-width: 850px;
+  margin: auto;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 14px;
+  border: 1px solid rgba(31, 107, 255, 0.12);
+  box-shadow: 0 16px 32px rgba(2, 6, 23, 0.12);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.back-btn {
+  padding: 10px 18px;
+  background-color: transparent;
+  color: #1f6bff;
+  text-decoration: none;
+  font-weight: 700;
+  border: 2px solid #1f6bff;
+  border-radius: 999px;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: #1f6bff;
+  color: #0b1020;
+}
+
+.info p {
+  margin: 6px 0;
+  font-size: 15px;
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 25px;
+  background: #fff;
+}
+
+.product-table th,
+.product-table td {
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  padding: 12px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.product-table th {
+  background: linear-gradient(135deg, #1f6bff 0%, #14f1c9 100%);
+  color: #0b1020;
+  font-weight: 700;
+}
+
+.total {
+  text-align: right;
+  font-size: 18px;
+  margin-top: 25px;
+  font-weight: 700;
+  color: #1f6bff;
+}
+
+.actions {
+  margin-top: 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.status-form select,
+.status-form button,
+.delete-btn {
+  padding: 8px 14px;
+  margin-left: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(31, 107, 255, 0.2);
+  font-size: 14px;
+}
+
+.status-form button {
+  background: linear-gradient(135deg, #1f6bff 0%, #14f1c9 100%);
+  color: #0b1020;
+  font-weight: 700;
+  border: none;
+}
+
+.status-form button:hover {
+  transform: translateY(-2px);
+}
+
+.delete-btn {
+  background-color: #ef4444;
+  color: white;
+  font-weight: 600;
+  border: none;
+}

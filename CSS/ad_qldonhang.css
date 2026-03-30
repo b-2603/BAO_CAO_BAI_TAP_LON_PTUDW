@@ -1,0 +1,56 @@
+body {
+  font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+  margin: 40px auto;
+  max-width: 1000px;
+  color: #0f172a;
+}
+
+h2 {
+  text-align: center;
+  color: #0f172a;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  margin-top: 20px;
+  box-shadow: 0 16px 32px rgba(2, 6, 23, 0.12);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+th {
+  background: linear-gradient(135deg, #1f6bff 0%, #14f1c9 100%);
+  color: #0b1020;
+}
+
+select, button {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(31, 107, 255, 0.25);
+}
+
+.update-btn {
+  background: linear-gradient(135deg, #1f6bff 0%, #14f1c9 100%);
+  color: #0b1020;
+  border: none;
+  cursor: pointer;
+}
+
+.update-btn:hover {
+  filter: brightness(0.95);
+}
+
+.delete-btn {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
