@@ -1,45 +1,41 @@
 <?php
 session_start();
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+header('Content-Type: application/json; charset=utf-8');
 
 /* ================= KIỂM TRA ĐĂNG NHẬP ================= */
 if (!isset($_SESSION['user_email']) || $_SESSION['user_role'] !== 'user') {
-    die('Bạn chưa đăng nhập!');
+    echo json_encode(["success" => false, "redirect" => "../PHP/Category.php"]);
+    exit();
 }
 
 $id_user = $_SESSION['id_user'] ?? null;
 if (!$id_user) {
-    die('Session id_user không tồn tại!');
+    echo json_encode(["success" => false, "message" => "Session id_user không tồn tại!"]);
+    exit();
 }
 
-/* ================= DEBUG POST ================= */
-echo "<pre>";
-echo "Session id_user: $id_user\n";
-echo "POST nhận được:\n";
-print_r($_POST);
-echo "</pre>";
-
-// 👉 MỞ comment dòng dưới khi test xong
-// die('Debug dừng tại đây - kiểm tra Network tab');
+require_once "Ketnoi.php";
 
 /* ================= CHỈ XỬ LÝ KHI POST ================= */
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     /* ===== KẾT NỐI CSDL ===== */
-    $conn = mysqli_connect("localhost", "root", "Shatou5114", "baitaplon");
-    if (!$conn) {
-        die("Lỗi kết nối CSDL: " . mysqli_connect_error());
-    }
+    $db = new tmdt();
+    $conn = $db->ketnoi();
 
     /* ===== NHẬN & LỌC DỮ LIỆU ===== */
-    $sp_id       = mysqli_real_escape_string($conn, $_POST['sp_id']);
-    $ten         = mysqli_real_escape_string($conn, $_POST['ten']);
-    $anh         = mysqli_real_escape_string($conn, $_POST['mainImage']);
-    $kichThuoc   = mysqli_real_escape_string($conn, $_POST['kich_thuoc']);
-    $soLuong     = (int)$_POST['so_luong'];
-    $giaSanPham  = (float)$_POST['gia_san_pham'];
-    $tongtien    = (float)$_POST['tong_tien'];
+    $sp_id       = mysqli_real_escape_string($conn, $_POST['sp_id'] ?? '');
+    $ten         = mysqli_real_escape_string($conn, $_POST['ten'] ?? '');
+    $anh         = mysqli_real_escape_string($conn, $_POST['mainImage'] ?? '');
+    $kichThuoc   = mysqli_real_escape_string($conn, $_POST['kich_thuoc'] ?? '');
+    $soLuong     = (int)($_POST['so_luong'] ?? 1);
+    $giaSanPham  = (float)preg_replace('/[^0-9.]/', '', $_POST['gia_san_pham'] ?? '0');
+    $tongtien    = (float)preg_replace('/[^0-9.]/', '', $_POST['tong_tien'] ?? '0');
+
+    if ($sp_id === '' || $ten === '' || $soLuong <= 0) {
+        echo json_encode(["success" => false, "message" => "Dữ liệu sản phẩm không hợp lệ."]);
+        exit();
+    }
 
     /* ===== KIỂM TRA GIỎ HÀNG ===== */
     $sql_giohang = "SELECT * FROM giohang WHERE gh_iduser = '$id_user'";
@@ -47,8 +43,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (mysqli_num_rows($rs_giohang) == 0) {
         // Tạo giỏ hàng mới
-        $sql_insert_gh = "INSERT INTO giohang (gh_iduser) VALUES ('$id_user')";
-        mysqli_query($conn, $sql_insert_gh);
+        $sql_insert_gh = "INSERT INTO giohang (gh_iduser, gh_tongtien) VALUES ('$id_user', 0)";
+        if (!mysqli_query($conn, $sql_insert_gh)) {
+            echo json_encode(["success" => false, "message" => "Không thể tạo giỏ hàng: " . mysqli_error($conn)]);
+            exit();
+        }
         $gh_id = mysqli_insert_id($conn);
     } else {
         $row = mysqli_fetch_assoc($rs_giohang);
@@ -74,7 +73,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             AND ctgh_idsp = '$sp_id'
             AND ctgh_kichthuoc = '$kichThuoc'
         ";
-        mysqli_query($conn, $sql_update);
+        if (!mysqli_query($conn, $sql_update)) {
+            echo json_encode(["success" => false, "message" => "Cập nhật sản phẩm thất bại: " . mysqli_error($conn)]);
+            exit();
+        }
     } else {
         // Thêm mới sản phẩm
         $sql_insert_ct = "
@@ -83,7 +85,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             VALUES
             ('$gh_id', '$sp_id', '$soLuong', '$tongtien', '$kichThuoc', '$giaSanPham', '$anh', '$ten')
         ";
-        mysqli_query($conn, $sql_insert_ct);
+        if (!mysqli_query($conn, $sql_insert_ct)) {
+            echo json_encode(["success" => false, "message" => "Thêm sản phẩm thất bại: " . mysqli_error($conn)]);
+            exit();
+        }
     }
 
     /* ===== CẬP NHẬT TỔNG TIỀN GIỎ ===== */
@@ -101,12 +106,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         SET gh_tongtien = '$tongtien_giohang'
         WHERE gh_id = '$gh_id'
     ";
-    mysqli_query($conn, $sql_update_gh);
+    if (!mysqli_query($conn, $sql_update_gh)) {
+        echo json_encode(["success" => false, "message" => "Cập nhật tổng giỏ hàng thất bại: " . mysqli_error($conn)]);
+        exit();
+    }
 
     mysqli_close($conn);
 
-    /* ===== CHUYỂN TRANG ===== */
-    header("Location: ../PHP/Bag.php?id_user=$id_user");
+    echo json_encode(["success" => true, "redirect" => "../PHP/Bag.php"]);
     exit();
 }
 ?>

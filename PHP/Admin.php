@@ -11,6 +11,7 @@ if (!isset($_SESSION['admin_email']) || $_SESSION['user_role'] !== 'admin') {
   <meta charset="UTF-8">
   <title>Trang Quản Trị</title>
   <link rel="stylesheet" href="../CSS/bootstrap.min.css">
+  <link rel="stylesheet" href="../CSS/base.css">
   <link rel="stylesheet" href="../CSS/footer.css">
   <link rel="stylesheet" href="../CSS/modal_dk.css">
   <link rel="stylesheet" href="../CSS/modal_dn.css">
@@ -22,14 +23,14 @@ if (!isset($_SESSION['admin_email']) || $_SESSION['user_role'] !== 'admin') {
   <link rel="stylesheet" href="../CSS/ad_thongkee.css">
   <link rel="stylesheet" href="../CSS/homee.css">
   <link rel="stylesheet" href="../CSS/admin.css">
-  <script src="../JS/jquery-3.7.1.min.js"></script>
-  <script src="../JS/bootstrap.bundle.min.js"></script>
-  <script src="../JS/nav.js"></script>
-  <script src="../JS/table.js"></script>
-  <script src="../JS/passwordToggle.js"></script>
-  <script src="../JS/login.js"></script>
-  <script src="../JS/createAccount.js"></script>
-  <script src="../JS/modalSwitch.js"></script>
+  <script src="../JS/jquery-3.7.1.min.js" defer></script>
+  <script src="../JS/bootstrap.bundle.min.js" defer></script>
+  <script src="../JS/nav.js" defer></script>
+  <script src="../JS/table.js" defer></script>
+  <script src="../JS/passwordToggle.js" defer></script>
+  <script src="../JS/login.js" defer></script>
+  <script src="../JS/createAccount.js" defer></script>
+  <script src="../JS/modalSwitch.js" defer></script>
     <link rel="stylesheet" href="../CSS/luxe.css">
 </head>
 <body>

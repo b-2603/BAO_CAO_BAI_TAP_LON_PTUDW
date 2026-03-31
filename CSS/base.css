@@ -1,0 +1,46 @@
+/* Global typography + rendering tweaks */
+:root {
+  --font-sans: system-ui, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+}
+
+html {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  font-family: var(--font-sans) !important;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: var(--font-sans);
+}
+
+/* Carousel arrows: remove button background, keep only the arrow */
+.carousel-control-prev,
+.carousel-control-next {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover,
+.carousel-control-prev:focus,
+.carousel-control-next:focus,
+.carousel-control-prev:active,
+.carousel-control-next:active {
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: transparent !important;
+}

@@ -10,6 +10,7 @@ class tmdt
             exit();
         }
 
+        mysqli_set_charset($con, "utf8");
         return $con;
     }
 }

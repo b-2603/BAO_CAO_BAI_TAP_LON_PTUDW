@@ -200,8 +200,8 @@ class dulieu extends tmdt
                     <a href="' . $chitietsanpham_link . '">
                         <div class="product-item horizontal-product-item" data-category="' . $sp_id . '" data-name="" data-price="' . $sp_gia . '" data-image="' . $sp_anh1 . '">
                             <div class="product-image">
-                                <img src="' . $sp_anh1 . '" class="main-img" alt="' . $sp_ten . '">
-                                <img src="' . $sp_anh2 . '" class="hover-img" alt="' . $sp_ten . '">
+                                <img src="' . $sp_anh1 . '" class="main-img" alt="' . $sp_ten . '" loading="lazy" decoding="async">
+                                <img src="' . $sp_anh2 . '" class="hover-img" alt="' . $sp_ten . '" loading="lazy" decoding="async">
                             </div>
                             <h2 class="product-name horizontal-product-item text-start text-uppercase">' . $sp_ten . '</h2>
                             <p class="chi_tiet_sp text-start">' . $ct_mota . '</p>
@@ -399,13 +399,13 @@ class dulieu extends tmdt
                         <!-- Cột Trái: Hình ảnh sản phẩm -->
                         <div class="col-md-6">
                             <div class="border-0">
-                                <img id="mainImage" src="' . $sp_anh1 . '" class="product-image" style="width:550px; height: 450px;" alt="Sản phẩm">
+                                <img id="mainImage" src="' . $sp_anh1 . '" class="product-image" style="width:550px; height: 450px;" alt="Sản phẩm" loading="eager" decoding="async">
                                 <div class="d-flex justify-content-center ">
                                     <div class="row">
                                         <div class="col-12 mb-2 mt-0">
-                                            <img src="' . $ct_album1 . '" class="thumbnail " style="width:180px; height:180px;" onclick="changeImage(this)">
-                                            <img src="' . $ct_album2 . '" class="thumbnail" style="width:180px; height:180px;" onclick="changeImage(this)">
-                                            <img src="' . $ct_album3 . '" class="thumbnail" style="width:180px; height:180px;" onclick="changeImage(this)">
+                                            <img src="' . $ct_album1 . '" class="thumbnail " style="width:180px; height:180px;" onclick="changeImage(this)" loading="lazy" decoding="async">
+                                            <img src="' . $ct_album2 . '" class="thumbnail" style="width:180px; height:180px;" onclick="changeImage(this)" loading="lazy" decoding="async">
+                                            <img src="' . $ct_album3 . '" class="thumbnail" style="width:180px; height:180px;" onclick="changeImage(this)" loading="lazy" decoding="async">
                                         </div>
                                     </div>
                                 </div>

@@ -214,6 +214,7 @@ nav.navbar {
   transform: translateX(-50%);
   top: 49px;
   box-shadow: 0 24px 60px rgba(2, 6, 23, 0.18);
+  padding: 18px 0;
 }
 
 .nav-item:hover .sub_menu {
@@ -244,23 +245,50 @@ nav.navbar {
   display: flex;
   justify-content: center;
   position: relative;
+  align-items: flex-start;
+  gap: 24px;
 }
 
 .dau {
-  width: 200px;
+  width: 260px;
   font-size: 14px;
-  padding-top: 20px;
+  padding-top: 10px;
+  padding-right: 12px;
+  border-right: 1px solid var(--line);
+}
+
+.dau li {
+  padding: 0;
+  margin: 0;
+}
+
+.dau a {
+  display: block;
+  padding: 6px 10px;
+  text-align: left;
+  white-space: nowrap;
+  border-radius: 8px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.dau a:hover {
+  background: rgba(31, 107, 255, 0.08);
+  color: #0b1220;
 }
 
 .giua {
   width: 215px;
   padding-right: 25px;
   padding-top: 40px;
+  display: flex;
+  align-items: center;
 }
 
 .duoi {
   width: 405px;
   padding-top: 40px;
+  display: flex;
+  align-items: center;
 }
 
 .content {

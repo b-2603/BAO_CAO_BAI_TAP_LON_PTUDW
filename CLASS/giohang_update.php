@@ -1,17 +1,17 @@
 <?php
 session_start();
 $id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : null;
+header('Content-Type: application/json; charset=utf-8');
 
 if (!isset($_SESSION['user_email']) || $_SESSION['user_role'] !== 'user') {
-    echo 'Bạn chưa đăng nhập !!!';
+    echo json_encode(["success" => false, "message" => "Bạn chưa đăng nhập."]);
     exit();
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $link = mysqli_connect('localhost', 'root', 'Shatou5114', 'baitaplon');
-    if (!$link) {
-        die("Kết nối thất bại: " . mysqli_connect_error());
-    }
+    require_once "Ketnoi.php";
+    $db = new tmdt();
+    $link = $db->ketnoi();
 
     $product_id = mysqli_real_escape_string($link, $_POST['product_id']);
     $new_quantity = (int)$_POST['new_quantity'];
@@ -38,9 +38,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             mysqli_query($link, $query_update_tongtien);
         }
 
-        echo "Giỏ hàng đã được cập nhật!";
+        echo json_encode(["success" => true]);
     } else {
-        echo "Không tìm thấy giỏ hàng!";
+        echo json_encode(["success" => false, "message" => "Không tìm thấy giỏ hàng!"]);
     }
 
     mysqli_close($link);

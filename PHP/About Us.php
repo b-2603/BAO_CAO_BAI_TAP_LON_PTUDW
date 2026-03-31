@@ -5,20 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chạy Đi Shop</title>
     <link rel="stylesheet" href="../CSS/bootstrap.min.css">
+    <link rel="stylesheet" href="../CSS/base.css">
     <link rel="stylesheet" href="../CSS/header.css">
     <link rel="stylesheet" href="../CSS/footer.css">
     <link rel="stylesheet" href="../CSS/modal_dk.css">
     <link rel="stylesheet" href="../CSS/modal_dn.css">
     <link rel="stylesheet" href="../CSS/sanphamm.css">
     <link rel="stylesheet" href="../CSS/modal_chi_tiet_san_pham.css">
-    <script src="../JS/jquery-3.7.1.min.js"></script>
-    <script src="../JS/bootstrap.bundle.min.js"></script>
-    <script src="../JS/nav.js"></script>
-    <script src="../JS/table.js"></script>
-    <script src="../JS/passwordToggle.js"></script>
-    <script src="../JS/login.js"></script>
-    <script src="../JS/createAccount.js"></script>
-    <script src="../JS/modalSwitch.js"></script>
+    <script src="../JS/jquery-3.7.1.min.js" defer></script>
+    <script src="../JS/bootstrap.bundle.min.js" defer></script>
+    <script src="../JS/nav.js" defer></script>
+    <script src="../JS/table.js" defer></script>
+    <script src="../JS/passwordToggle.js" defer></script>
+    <script src="../JS/login.js" defer></script>
+    <script src="../JS/createAccount.js" defer></script>
+    <script src="../JS/modalSwitch.js" defer></script>
     <link rel="stylesheet" href="../CSS/luxe.css">
 </head>
 <body class="about-sport">
@@ -180,7 +181,7 @@
               <img src="https://images.pexels.com/photos/5384619/pexels-photo-5384619.jpeg" class="hover-img" alt="Sản phẩm 1">
             </div>
             <h2 class="product-name horizontal-product-item text-center" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);">
-              <a href="https://www.facebook.com/profile.php?id=100059367216862" target="_blank" style="text-decoration: none;">
+              <a href="" target="_blank" style="text-decoration: none;">
                 <button type="button" style="background-color: white; color: #6f4f37; padding: 10px 20px; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer;">
                   <strong>Lê Quốc Khánh</strong>
                 </button>
@@ -196,7 +197,7 @@
               <img src="https://images.pexels.com/photos/1103833/pexels-photo-1103833.jpeg" class="hover-img" alt="Sản phẩm 2">
             </div>
             <h2 class="product-name horizontal-product-item text-center" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);">
-              <a href="https://www.facebook.com/ngocdiem5240" target="_blank" style="text-decoration: none;">
+              <a href="" target="_blank" style="text-decoration: none;">
                 <button type="button" style="background-color: white; color: #6f4f37; padding: 10px 20px; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer;">
                   <strong>Nguyễn Trần Thái Bảo</strong>
                 </button>
@@ -212,7 +213,7 @@
               <img src="https://images.pexels.com/photos/27862760/pexels-photo-27862760.jpeg" class="hover-img" alt="Sản phẩm 3">
             </div>
             <h2 class="product-name horizontal-product-item text-center" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);">
-              <a href="https://www.facebook.com/your-link-here" target="_blank" style="text-decoration: none;">
+              <a href="https://www.facebook.com/share/186GNsqWSH/" target="_blank" style="text-decoration: none;">
                 <button type="button" style="background-color: white; color: #6f4f37; padding: 10px 20px; border: none; border-radius: 5px; font-size: 1rem; cursor: pointer;">
                   <strong>Tống Hiểu Khiêm</strong>
                 </button>
