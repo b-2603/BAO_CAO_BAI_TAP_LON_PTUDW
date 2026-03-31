@@ -60,7 +60,15 @@ $(document).ready(function () {
             if (data.status === "success") {
                 window.location.href = "Donhangchitiet.php?dh_id=" + data.dh_id;
             } else {
-                alert("Đặt hàng thất bại!");
+                if (data.status === "not_logged_in") {
+                    alert("Bạn cần đăng nhập để đặt hàng.");
+                } else if (data.status === "empty_cart") {
+                    alert("Giỏ hàng trống hoặc chưa chọn sản phẩm.");
+                } else if (data.message) {
+                    alert(data.message);
+                } else {
+                    alert("Đặt hàng thất bại!");
+                }
             }
         });
 

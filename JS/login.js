@@ -34,6 +34,15 @@ $(document).ready(function() {
         .then(response => response.text())
         .then(data => {
             document.getElementById('loginMessage').innerHTML = data;
+            // Nếu đăng nhập thành công thì điều hướng theo meta refresh trả về
+            const match = data.match(/url=([^"']+)/i);
+            if (match && match[1]) {
+                window.location.href = match[1];
+                return;
+            }
+            if (data.toLowerCase().includes('đăng nhập thành công')) {
+                window.location.reload();
+            }
         })
         .catch(error => {
             console.error('Có lỗi xảy ra:', error);

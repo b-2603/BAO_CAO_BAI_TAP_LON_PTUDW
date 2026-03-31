@@ -1,62 +1,67 @@
 <?php
 session_start();
+header('Content-Type: application/json; charset=utf-8');
+
+require_once "Ketnoi.php";
+
+function respond_json($data)
+{
+    echo json_encode($data);
+    exit();
+}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $conn = mysqli_connect('localhost', 'root', 'Shatou5114', 'baitaplon');
-    if (!$conn) {
-        die("Kết nối thất bại: " . mysqli_connect_error());
-    }
+    $db = new tmdt();
+    $conn = $db->ketnoi();
 
     $id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : null;
     if (!$id_user) {
-        echo "not_logged_in";
-        exit;
+        respond_json(array("status" => "not_logged_in"));
     }
 
-    if (isset($_SESSION['donhang_tam'])) {
-        $donhang_tam = $_SESSION['donhang_tam'];
-        $tong_tien = $donhang_tam['tong_tien'];
-        $selected_items = $donhang_tam['san_pham'];
+    if (!isset($_SESSION['donhang_tam'])) {
+        respond_json(array("status" => "empty_cart"));
+    }
 
-        $query_insert_dh = "INSERT INTO donhang (user_id, dh_tongtien, dh_trangthai) 
-                            VALUES ('$id_user', $tong_tien, 'Cho_xac_nhan')";
-        if (mysqli_query($conn, $query_insert_dh)) {
-            $id_donhang = mysqli_insert_id($conn);
-            $_SESSION['dh_id_moi'] = $id_donhang;
+    $donhang_tam = $_SESSION['donhang_tam'];
+    $tong_tien = $donhang_tam['tong_tien'];
+    $selected_items = $donhang_tam['san_pham'];
 
-            foreach ($selected_items as $item) {
-                $id_sanpham = $item['id_sanpham'];
-                $so_luong = $item['so_luong'];
-                $gia_ban = $item['gia_ban'];
-                $thanh_tien = $item['thanh_tien'];
-                $tensp = mysqli_real_escape_string($conn, $item['tensp']);
-                $anhsp = mysqli_real_escape_string($conn, $item['anhsp']);
+    $query_insert_dh = "INSERT INTO donhang (user_id, dh_tongtien, dh_trangthai) 
+                        VALUES ('$id_user', $tong_tien, 'Cho_xac_nhan')";
+    if (!mysqli_query($conn, $query_insert_dh)) {
+        respond_json(array("status" => "error_donhang", "message" => mysqli_error($conn)));
+    }
 
-                $query_insert_ctdh = "INSERT INTO donhang_chitiet 
-                    (dh_id, id_sanpham, dhct_soluong, dhct_giabansp, dhct_thanhtien, dhct_tensp, dhct_anhsp) 
-                    VALUES ('$id_donhang', '$id_sanpham', $so_luong, $gia_ban, $thanh_tien, '$tensp', '$anhsp')";
-                mysqli_query($conn, $query_insert_ctdh) or die("Lỗi thêm chi tiết đơn hàng: " . mysqli_error($conn));
-            }
+    $id_donhang = mysqli_insert_id($conn);
+    $_SESSION['dh_id_moi'] = $id_donhang;
 
-            foreach ($selected_items as $item) {
-                $id_sanpham = $item['id_sanpham'];
-                $query_delete_chitiet = "DELETE FROM giohang_chitiet 
-                                         WHERE gh_id IN (SELECT gh_id FROM giohang WHERE gh_iduser = '$id_user') 
-                                         AND ctgh_idsp = '$id_sanpham'";
-                mysqli_query($conn, $query_delete_chitiet);
-            }
+    foreach ($selected_items as $item) {
+        $id_sanpham = $item['id_sanpham'];
+        $so_luong = $item['so_luong'];
+        $gia_ban = $item['gia_ban'];
+        $thanh_tien = $item['thanh_tien'];
+        $tensp = mysqli_real_escape_string($conn, $item['tensp']);
+        $anhsp = mysqli_real_escape_string($conn, $item['anhsp']);
 
-            unset($_SESSION['donhang_tam']);
-        } else {
-            echo "error_donhang";
-            exit;
+        $query_insert_ctdh = "INSERT INTO donhang_chitiet 
+            (dh_id, id_sanpham, dhct_soluong, dhct_giabansp, dhct_thanhtien, dhct_tensp, dhct_anhsp) 
+            VALUES ('$id_donhang', '$id_sanpham', $so_luong, $gia_ban, $thanh_tien, '$tensp', '$anhsp')";
+        if (!mysqli_query($conn, $query_insert_ctdh)) {
+            respond_json(array("status" => "error_ctdh", "message" => mysqli_error($conn)));
         }
-    } else {
-        echo "empty_cart";
-        exit;
     }
 
-    // Lưu thông tin vận chuyển
+    foreach ($selected_items as $item) {
+        $id_sanpham = $item['id_sanpham'];
+        $query_delete_chitiet = "DELETE FROM giohang_chitiet 
+                                 WHERE gh_id IN (SELECT gh_id FROM giohang WHERE gh_iduser = '$id_user') 
+                                 AND ctgh_idsp = '$id_sanpham'";
+        mysqli_query($conn, $query_delete_chitiet);
+    }
+
+    unset($_SESSION['donhang_tam']);
+
     $ten = mysqli_real_escape_string($conn, $_POST['ho_va_ten']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $dia_chi = mysqli_real_escape_string($conn, $_POST['dia_chi']);
@@ -68,13 +73,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         VALUES ('$id_user', '$id_donhang', '$ten', '$email', '$sdt', '$dia_chi', '$thanh_pho')";
 
     if (!mysqli_query($conn, $query_vanchuyen)) {
-        echo "error_vanchuyen";
-        exit;
+        respond_json(array("status" => "error_vanchuyen", "message" => mysqli_error($conn)));
     }
 
     mysqli_close($conn);
 
-    echo json_encode(["status" => "success", "dh_id" => $id_donhang]);
-
+    respond_json(array("status" => "success", "dh_id" => $id_donhang));
 }
+
+respond_json(array("status" => "invalid_method"));
 ?>

@@ -275,7 +275,7 @@ $p = new dulieu();
   <div class="ct1 row g-0" style="height: 700px;">
     <div class="row g-0">
       <div class="col-md-8 d-none d-md-block">
-      <img src="https://images.pexels.com/photos/7202266/pexels-photo-7202266.jpeg" alt="Thời trang thể thao" style="width: 100%; height: 550px; object-fit: cover;">
+      <img src="https://i.pinimg.com/1200x/76/3d/78/763d7873bfcbc39a4b0067a9081cd136.jpg" alt="Thời trang thể thao" style="width: 100%; height: 550px; object-fit: contain; background: #f2f2f2;">
       </div>
       <div class="col-12 col-md-4" style="background-color:#efebe2; height: 550px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
         <h2 class="line-heading pb-3" style="font-size: 1.7rem; font-weight: bold; color: #555; letter-spacing: 2px; width: 320px;">
