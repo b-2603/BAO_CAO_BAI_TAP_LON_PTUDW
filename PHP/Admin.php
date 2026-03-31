@@ -43,6 +43,7 @@ if (!isset($_SESSION['admin_email']) || $_SESSION['user_role'] !== 'admin') {
     </div>
   </nav>
   <!--phần nội dung -->
+<<<<<<< HEAD
   <!-- Thanh Bên -->
   <div class="qt-thanhben">
     <a onclick="loadPage('ajax_load/trangkhach.php')">🏠 Trang Khách</a>
@@ -54,6 +55,22 @@ if (!isset($_SESSION['admin_email']) || $_SESSION['user_role'] !== 'admin') {
   <div class="qt-noidungchinh" id="content">
     <h4 class="mb-3">📋 Tổng Quan Hệ Thống</h4>
     <h2 class="fw-bold text-dark mb-3">👋 Xin chào, Admin!</h2>
+=======
+  <div class="container-fluid p-0 m-0">
+    <div class="row gx-0">
+      <!-- Thanh Bên -->
+      <div class="col-md-3 qt-thanhben">
+        <a onclick="loadPage('ajax_load/trangkhach.php')">🏠 Trang Khách</a>
+        <a onclick="loadPage('ajax_load/qlsanpham.php')">📦 Thêm sản phẩm</a>
+        <a onclick="loadPage('ajax_load/qldonhang.php')">🧾 Quản lý đơn hàng</a>
+        <a onclick="loadPage('ajax_load/thongke.php')">📊 Thống kê</a>
+      </div>
+      <!-- Nội Dung Chính -->
+      <div class="col-md-9 qt-noidungchinh" id="content">
+        <h4 class="mb-3">📋 Tổng Quan Hệ Thống</h4>
+        <h2 class="fw-bold text-dark mb-3">👋 Xin chào, Admin!</h2>
+    </div>
+>>>>>>> 1e04d946ee1b11827e820da189420f51ca0a5a0e
   </div>
 
 <!-- xử lý để chiếu file điều hướng vào một chỗ cố định để không đẩy đi trang khác -->
@@ -79,3 +96,7 @@ if (!isset($_SESSION['admin_email']) || $_SESSION['user_role'] !== 'admin') {
 
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1e04d946ee1b11827e820da189420f51ca0a5a0e

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿<?php
 $conn = mysqli_connect("localhost", "root", "", "baitaplon");
 if (!$conn) {
@@ -100,6 +101,36 @@ $sql = "SELECT
             donhang.dh_tongtien,
             donhang.dh_trangthai,
             login_user.user_firstname,
+=======
+<?php
+$conn = mysqli_connect("localhost", "usertmdt", "passtmdt", "baitaplon");
+if (!$conn) {
+    die("Kết nối thất bại: " . mysqli_connect_error());
+}
+
+//cập nhật trạng thái đơn hàng
+if (isset($_POST['update_status'])) {
+    $dh_id = $_POST['dh_id'];
+    $trangthai = $_POST['trangthai'];
+    $sql_update = "UPDATE donhang SET dh_trangthai = '$trangthai' WHERE dh_id = '$dh_id'";
+    mysqli_query($conn, $sql_update);
+}
+
+//xoá đơn hàng
+if (isset($_POST['delete_order'])) {
+    $dh_id = $_POST['dh_id'];
+    mysqli_query($conn, "DELETE FROM vanchuyen WHERE dh_id = '$dh_id'");
+    mysqli_query($conn, "DELETE FROM donhang_chitiet WHERE dh_id = '$dh_id'");
+    mysqli_query($conn, "DELETE FROM donhang WHERE dh_id = '$dh_id'");
+}
+
+$sql = "SELECT 
+            donhang.dh_id, 
+            donhang.dh_ngaytao, 
+            donhang.dh_tongtien, 
+            donhang.dh_trangthai, 
+            login_user.user_firstname, 
+>>>>>>> 1e04d946ee1b11827e820da189420f51ca0a5a0e
             login_user.user_lastname
         FROM donhang
         INNER JOIN login_user ON donhang.user_id = login_user.user_id
@@ -107,6 +138,7 @@ $sql = "SELECT
 
 $result = mysqli_query($conn, $sql);
 
+<<<<<<< HEAD
 if ($result && mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         $hoten = $row['user_lastname'] . " " . $row['user_firstname'];
@@ -121,6 +153,22 @@ if ($result && mysqli_num_rows($result) > 0) {
                 <td>
                   <form method="POST">
                     <input type="hidden" name="dh_id" value="' . (int)$row['dh_id'] . '">
+=======
+if (mysqli_num_rows($result) > 0) {
+    while ($row = mysqli_fetch_assoc($result)) {
+        $hoten = $row['user_lastname'] . " " . $row['user_firstname'];
+        $tongtien = number_format($row['dh_tongtien'], 0, ',', '.') . "₫";
+        $trangthai = $row['dh_trangthai'];
+
+        echo '<tr>
+                <td>' . $row['dh_id'] . '</td>
+                <td>' . $hoten . '</td>
+                <td>' . $row['dh_ngaytao'] . '</td>
+                <td>' . $tongtien . '</td>
+                <td>
+                  <form method="POST">
+                    <input type="hidden" name="dh_id" value="' . $row['dh_id'] . '">
+>>>>>>> 1e04d946ee1b11827e820da189420f51ca0a5a0e
                     <select name="trangthai">
                       <option value="Cho_xac_nhan"' . ($trangthai == 'Cho_xac_nhan' ? ' selected' : '') . '>Cho_xac_nhan</option>
                       <option value="Da_thanh_toan"' . ($trangthai == 'Da_thanh_toan' ? ' selected' : '') . '>Da_thanh_toan</option>
@@ -134,6 +182,7 @@ if ($result && mysqli_num_rows($result) > 0) {
                 </td>
                 <td>
                    <div style="display: inline-flex; gap: 5px;">
+<<<<<<< HEAD
                         <form method="POST" onsubmit="return confirm(\'Bạn có chắc chắn muốn xóa đơn này không?\');">
                             <input type="hidden" name="dh_id" value="' . (int)$row['dh_id'] . '">
                             <button type="submit" name="delete_order" class="delete-btn">Xóa</button>
@@ -141,6 +190,15 @@ if ($result && mysqli_num_rows($result) > 0) {
                         <form method="GET" action="Admin_xem_donhang.php" class="btn-inline-form">
                             <input type="hidden" name="dh_id" value="' . (int)$row['dh_id'] . '">
                             <button type="submit" class="btn-detail">Chi tiết</button>
+=======
+                        <form method="POST" onsubmit="return confirm(\'Bạn có chắc chắn muốn xoá đơn này không?\');">
+                            <input type="hidden" name="dh_id" value="' . $row['dh_id'] . '">
+                            <button type="submit" name="delete_order" class="delete-btn">Xoá</button>
+                        </form>
+                        <form method="GET" action="Admin_xem_donhang.php" class="btn-inline-form">
+                            <input type="hidden" name="dh_id" value="' . $row['dh_id'] . '">
+                            <button type="submit" class="btn-detail">📝 Chi tiết</button>
+>>>>>>> 1e04d946ee1b11827e820da189420f51ca0a5a0e
                         </form>
                     </div>
               </tr>';
@@ -151,4 +209,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 
 mysqli_close($conn);
 ?>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1e04d946ee1b11827e820da189420f51ca0a5a0e

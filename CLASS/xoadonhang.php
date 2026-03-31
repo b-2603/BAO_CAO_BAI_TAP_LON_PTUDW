@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 $conn = mysqli_connect('localhost', 'root', '', 'baitaplon');
+=======
+$conn = mysqli_connect('localhost', 'root', 'Shatou5114', 'baitaplon');
+>>>>>>> 1e04d946ee1b11827e820da189420f51ca0a5a0e
 if (!$conn) {
     die("Kết nối thất bại: " . mysqli_connect_error());
 }

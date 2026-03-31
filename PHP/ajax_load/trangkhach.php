@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 $conn = mysqli_connect("localhost", "root", "", "baitaplon");
 if (!$conn) {
@@ -121,3 +122,8 @@ $recentProducts = mysqli_query(
 
 <?php mysqli_close($conn); ?>
 
+=======
+<div style="display: flex; justify-content: center;">
+  <iframe src="../index.php" style="width:80%; height:600px; border:none;"></iframe>
+</div>
+>>>>>>> 1e04d946ee1b11827e820da189420f51ca0a5a0e

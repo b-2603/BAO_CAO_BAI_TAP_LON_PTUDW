@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 ﻿<?php include '../QLSP/Thongkedonhang.php'; ?>
+=======
+<?php include '../QLSP/Thongkedonhang.php'; ?>
+>>>>>>> 1e04d946ee1b11827e820da189420f51ca0a5a0e
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -14,11 +18,19 @@
     <form method="GET" class="filter-form">
         <div>
             <label><strong>Từ ngày:</strong></label><br>
+<<<<<<< HEAD
             <input type="date" name="ngay_tu" value="<?php echo htmlspecialchars($ngay_tu); ?>">
         </div>
         <div>
             <label><strong>Đến ngày:</strong></label><br>
             <input type="date" name="ngay_den" value="<?php echo htmlspecialchars($ngay_den); ?>">
+=======
+            <input type="date" name="ngay_tu" value="<?php echo $ngay_tu; ?>">
+        </div>
+        <div>
+            <label><strong>Đến ngày:</strong></label><br>
+            <input type="date" name="ngay_den" value="<?php echo $ngay_den; ?>">
+>>>>>>> 1e04d946ee1b11827e820da189420f51ca0a5a0e
         </div>
         <div>
             <label><strong>Trạng thái:</strong></label><br>
@@ -33,13 +45,22 @@
             </select>
         </div>
         <div class="submit-btn">
+<<<<<<< HEAD
             <button type="submit">Lọc</button>
+=======
+            <button type="submit">🔍 Lọc</button>
+>>>>>>> 1e04d946ee1b11827e820da189420f51ca0a5a0e
         </div>
     </form>
 
     <div class="summary">
+<<<<<<< HEAD
         <p><strong>🧾 Tổng số đơn:</strong> <?php echo (int)$thongke['tong_don']; ?></p>
         <p><strong>💰 Tổng doanh thu:</strong> <?php echo number_format((float)$thongke['tong_tien'], 0, ',', '.'); ?> ₫</p>
+=======
+        <p><strong>🧾 Tổng số đơn:</strong> <?php echo $thongke['tong_don']; ?></p>
+        <p><strong>💰 Tổng doanh thu:</strong> <?php echo number_format($thongke['tong_tien'], 0, ',', '.'); ?> ₫</p>
+>>>>>>> 1e04d946ee1b11827e820da189420f51ca0a5a0e
     </div>
 
     <h3>🔥 Top 5 sản phẩm bán chạy:</h3>
@@ -51,11 +72,19 @@
             </tr>
         </thead>
         <tbody>
+<<<<<<< HEAD
             <?php if ($result_banchay && mysqli_num_rows($result_banchay) > 0) {
                 while ($row = mysqli_fetch_assoc($result_banchay)) { ?>
                     <tr>
                         <td><?php echo htmlspecialchars($row['dhct_tensp']); ?></td>
                         <td><?php echo (int)$row['tong_so_luong']; ?></td>
+=======
+            <?php if (mysqli_num_rows($result_banchay) > 0) {
+                while ($row = mysqli_fetch_assoc($result_banchay)) { ?>
+                    <tr>
+                        <td><?php echo $row['dhct_tensp']; ?></td>
+                        <td><?php echo $row['tong_so_luong']; ?></td>
+>>>>>>> 1e04d946ee1b11827e820da189420f51ca0a5a0e
                     </tr>
                 <?php }
             } else { ?>
@@ -63,6 +92,19 @@
             <?php } ?>
         </tbody>
     </table>
+<<<<<<< HEAD
 </div>
 </body>
 </html>
+=======
+
+    <div class="back">
+        <a href="../Admin.php">
+            <button>🔙 Trở về trang quản lý</button>
+        </a>
+    </div>
+</div>
+</body>
+</html>
+
+>>>>>>> 1e04d946ee1b11827e820da189420f51ca0a5a0e

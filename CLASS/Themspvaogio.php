@@ -8,7 +8,11 @@ if (!isset($_SESSION['user_email']) || $_SESSION['user_role'] !== 'user') {
     die('Bạn chưa đăng nhập!');
 }
 
+<<<<<<< HEAD
 $id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : null;
+=======
+$id_user = $_SESSION['id_user'] ?? null;
+>>>>>>> 1e04d946ee1b11827e820da189420f51ca0a5a0e
 if (!$id_user) {
     die('Session id_user không tồn tại!');
 }
@@ -27,7 +31,11 @@ echo "</pre>";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     /* ===== KẾT NỐI CSDL ===== */
+<<<<<<< HEAD
     $conn = mysqli_connect("localhost", "root", "", "baitaplon");
+=======
+    $conn = mysqli_connect("localhost", "root", "Shatou5114", "baitaplon");
+>>>>>>> 1e04d946ee1b11827e820da189420f51ca0a5a0e
     if (!$conn) {
         die("Lỗi kết nối CSDL: " . mysqli_connect_error());
     }

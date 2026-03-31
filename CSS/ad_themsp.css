@@ -55,15 +55,24 @@ textarea {
 }
 
 button {
+<<<<<<< HEAD
   background: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
   color: #ffffff;
   padding: 10px 24px;
   border: none;
   border-radius: 10px;
+=======
+  background: linear-gradient(135deg, #1f6bff 0%, #14f1c9 100%);
+  color: #0b1020;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 999px;
+>>>>>>> 1e04d946ee1b11827e820da189420f51ca0a5a0e
   cursor: pointer;
   font-weight: 700;
   font-size: 15px;
   margin-top: 15px;
+<<<<<<< HEAD
   box-shadow: 0 10px 20px rgba(37, 99, 235, 0.26);
   transition: 0.2s ease;
 }
@@ -71,6 +80,13 @@ button {
 button:hover {
   transform: translateY(-1px);
   filter: brightness(1.02);
+=======
+  box-shadow: 0 10px 20px rgba(31, 107, 255, 0.25);
+}
+
+button:hover {
+  transform: translateY(-2px);
+>>>>>>> 1e04d946ee1b11827e820da189420f51ca0a5a0e
 }
 
 h4 {

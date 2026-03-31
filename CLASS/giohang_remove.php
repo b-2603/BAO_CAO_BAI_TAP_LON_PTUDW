@@ -8,7 +8,11 @@ if (!isset($_SESSION['user_email']) || $_SESSION['user_role'] !== 'user') {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+<<<<<<< HEAD
     $link = mysqli_connect('localhost', 'root', '', 'baitaplon');
+=======
+    $link = mysqli_connect('localhost', 'root', 'Shatou5114', 'baitaplon');
+>>>>>>> 1e04d946ee1b11827e820da189420f51ca0a5a0e
     if (!$link) {
         die("Kết nối thất bại: " . mysqli_connect_error());
     }
