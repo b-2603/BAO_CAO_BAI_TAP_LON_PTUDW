@@ -2,6 +2,16 @@
 include ("Ketnoi.php");
 class dulieu extends tmdt
 {
+    private function columnExists($conn, $table, $column)
+    {
+        $table_safe = mysqli_real_escape_string($conn, $table);
+        $column_safe = mysqli_real_escape_string($conn, $column);
+        $rs = mysqli_query($conn, "SHOW COLUMNS FROM `$table_safe` LIKE '$column_safe'");
+        if ($rs && mysqli_num_rows($rs) > 0) {
+            return true;
+        }
+        return false;
+    }
     private function mapDanhMucTen($ten)
     {
         $map = array(
@@ -469,19 +479,21 @@ class dulieu extends tmdt
         $link = $this->ketnoi();
         $ketqua = mysqli_query($link, $sql);
         $i = mysqli_num_rows($ketqua);     
-    
+
         if ($i > 0) {
             $row = mysqli_fetch_array($ketqua);
             $gh_id = $row['gh_id'];
             $gh_tongtien = $row['gh_tongtien'];
-    
+            $col_tensp = $this->columnExists($link, 'giohang_chitiet', 'ctgh_tensp') ? 'ctgh_tensp' : 'ghct_tensp';
+            $col_anhsp = $this->columnExists($link, 'giohang_chitiet', 'ghct_anhsp') ? 'ghct_anhsp' : 'ctgh_anhsp';
+
             $chitiet = "SELECT * FROM giohang_chitiet WHERE gh_id = $gh_id";
             $ketqua_chitiet = mysqli_query($link, $chitiet);
-    
+
             while ($rows = mysqli_fetch_array($ketqua_chitiet)) {
                 $ctgh_id = $rows['ctgh_id'];
-                $ghct_anhsp = $rows['ghct_anhsp'];
-                $ghct_tensp = $rows['ghct_tensp'];
+                $ghct_anhsp = $rows[$col_anhsp];
+                $ghct_tensp = $rows[$col_tensp];
                 $ctgh_kichthuoc = $rows['ctgh_kichthuoc'];
                 $ctgh_soluong = $rows['ctgh_soluong'];
                 $ctgh_gia = $rows['ctgh_gia'];
@@ -509,6 +521,8 @@ class dulieu extends tmdt
         $id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : null;
         $selected_items_str = implode(",", array_map('intval', $selected_items));
         $link = $this->ketnoi(); 
+        $col_tensp = $this->columnExists($link, 'giohang_chitiet', 'ctgh_tensp') ? 'ctgh_tensp' : 'ghct_tensp';
+        $col_anhsp = $this->columnExists($link, 'giohang_chitiet', 'ghct_anhsp') ? 'ghct_anhsp' : 'ctgh_anhsp';
     
 //Lấy các sản phẩm được chọn
         $query_chitiet = "SELECT * FROM giohang_chitiet WHERE gh_id IN 
@@ -524,8 +538,8 @@ class dulieu extends tmdt
                 'so_luong'   => $row['ctgh_soluong'],
                 'gia_ban'    => $row['ctgh_gia'],
                 'thanh_tien' => $row['ctgh_tongtien'],
-                'tensp'      => $row['ghct_tensp'],
-                'anhsp'      => $row['ghct_anhsp']
+                'tensp'      => $row[$col_tensp],
+                'anhsp'      => $row[$col_anhsp]
             );
             $tong_tien += $row['ctgh_tongtien'];
             $danhsach_sp[] = $item;

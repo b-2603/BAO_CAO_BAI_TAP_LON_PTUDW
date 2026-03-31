@@ -8,6 +8,19 @@
   box-shadow: 0 20px 40px rgba(2, 6, 23, 0.12);
 }
 
+.cart-body .content {
+  margin-top: 240px;
+}
+
+.cart-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 6px 0 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
 .cart-form {
   width: 90%;
 }

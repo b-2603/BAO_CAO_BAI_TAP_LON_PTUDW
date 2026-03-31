@@ -1,100 +1,294 @@
 body {
   font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
-  background: #f4f7ff;
+  background: radial-gradient(circle at top left, rgba(20, 241, 201, 0.15), transparent 45%),
+              radial-gradient(circle at top right, rgba(31, 107, 255, 0.2), transparent 40%),
+              #f4f7ff;
   color: #0f172a;
   margin: 0;
   padding: 0;
 }
 
-#hop_dung_noidung {
-  height: 420px;
+.checkout-hero {
+  padding: 40px 0 20px;
+}
+
+.checkout-hero__inner {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
-#thongtin_donhang {
-  background: #ffffff;
-  padding: 15px;
-  border-radius: 14px;
-  border: 1px solid rgba(31, 107, 255, 0.12);
-  box-shadow: 0 16px 32px rgba(2, 6, 23, 0.12);
+.checkout-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 8px;
 }
 
-h3 {
+.checkout-title h1 {
+  font-size: 36px;
+  margin: 0 0 8px;
+  font-weight: 800;
+}
+
+.checkout-subtitle {
+  margin: 0;
+  color: #475569;
+  max-width: 520px;
+}
+
+.checkout-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.checkout-shell {
+  padding: 0 20px 40px;
+}
+
+.checkout-steps {
+  max-width: 1200px;
+  margin: 10px auto 20px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.step.active {
   color: #0f172a;
+}
+
+.step-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #cbd5f5;
+}
+
+.step.active .step-dot {
+  background: #1f6bff;
+}
+
+.card-surface {
+  background: #ffffff;
+  padding: 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(31, 107, 255, 0.12);
+  box-shadow: 0 20px 35px rgba(2, 6, 23, 0.12);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.card-badge {
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(31, 107, 255, 0.12);
+  color: #1f6bff;
   font-weight: 700;
-  margin-top: 0;
 }
 
 #danh_sach_giohang {
-  max-height: 300px;
+  max-height: 320px;
   overflow-y: auto;
   padding-right: 10px;
+}
+
+.order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .muc_giohang {
   display: flex;
   align-items: center;
   background: #f8fbff;
-  margin-bottom: 12px;
-  padding: 10px;
-  border-radius: 12px;
+  padding: 12px;
+  border-radius: 14px;
   border: 1px solid rgba(15, 23, 42, 0.08);
 }
 
 .muc_giohang img {
-  width: 70px;
-  height: 70px;
+  width: 78px;
+  height: 78px;
   object-fit: cover;
-  border-radius: 10px;
+  border-radius: 12px;
   margin-right: 15px;
 }
 
-.muc_giohang p {
-  margin: 5px 0;
-  font-size: 14px;
+.order-item__content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-#tong_tien {
+.order-item__name {
+  margin: 0;
+  font-weight: 700;
+}
+
+.order-item__meta,
+.order-item__total {
+  margin: 0;
+  font-size: 13px;
+  color: #475569;
+}
+
+.order-item__total {
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.order-summary {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.summary-row,
+.summary-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.summary-total {
   font-size: 18px;
   font-weight: 800;
-  margin-top: 10px;
   color: #1f6bff;
 }
 
-#khung_nhap_thongtin {
-  background: #ffffff;
-  padding: 15px;
-  border-radius: 14px;
-  border: 1px solid rgba(31, 107, 255, 0.12);
-  box-shadow: 0 16px 32px rgba(2, 6, 23, 0.12);
+.summary-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.field-group {
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f2937;
 }
 
 .o_nhap {
   width: 100%;
-  padding: 8px;
+  padding: 10px 12px;
   border: 1px solid rgba(31, 107, 255, 0.2);
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 14px;
   background: #f8fbff;
 }
 
-.khoang_cach_duoi {
-  margin-bottom: 10px;
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.form-note {
+  font-size: 12px;
+  color: #64748b;
+  margin: 0;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 24px 10px;
+}
+
+.primary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: none;
+  font-weight: 700;
+  color: #0b1020;
+  background: linear-gradient(135deg, #1f6bff 0%, #14f1c9 100%);
+  box-shadow: 0 12px 20px rgba(31, 107, 255, 0.25);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.ghost-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(31, 107, 255, 0.3);
+  background: #ffffff;
+  color: #1f6bff;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.ghost-btn.danger {
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+}
+
+.support-card {
+  margin-top: 16px;
+}
+
+.support-card h4 {
+  margin-top: 0;
+  margin-bottom: 6px;
+}
+
+.support-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.primary-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 #phuong_thuc_thanhtoan {
   margin-top: 15px;
-}
-
-.nut_bam {
-  padding: 10px 16px;
-  font-size: 14px;
-  font-weight: 700;
-  border: none;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 #nut_momo_qr,
@@ -104,6 +298,16 @@ h3 {
   box-shadow: 0 10px 20px rgba(31, 107, 255, 0.25);
 }
 
-.nut_bam:hover {
-  transform: translateY(-2px);
+@media (max-width: 768px) {
+  .checkout-hero__inner {
+    align-items: flex-start;
+  }
+
+  .checkout-title h1 {
+    font-size: 28px;
+  }
+
+  .checkout-steps {
+    flex-wrap: wrap;
+  }
 }

@@ -1,221 +1,171 @@
 <?php
-
 session_start();
-$id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : null; 
+$id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : null;
 if (!isset($_SESSION['user_email']) || $_SESSION['user_role'] !== 'user') {
     echo '<meta http-equiv="refresh" content="0;url=Category.php">';
-    exit(); 
+    exit();
 }
-?>
-<?php
 
 include("../CLASS/Xuatttsanpham.php");
-$p = new dulieu(); 
+$p = new dulieu();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['huy_donhang'])) {
+    $p->xoaDonHang();
+    exit();
+}
+
+$donhang_tam = isset($_SESSION['donhang_tam']) ? $_SESSION['donhang_tam'] : null;
 ?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Chạy Đi Shop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin đơn hàng</title>
     <link rel="stylesheet" href="../CSS/bootstrap.min.css">
     <link rel="stylesheet" href="../CSS/base.css">
-    <link rel="stylesheet" href="../CSS/header.css">
-    <link rel="stylesheet" href="../CSS/footer.css">
-    <link rel="stylesheet" href="../CSS/modal_dk.css">
-    <link rel="stylesheet" href="../CSS/modal_dn.css">
-    <link rel="stylesheet" href="../CSS/sanphamm.css">
     <link rel="stylesheet" href="../CSS/thongtindonhang.css">
-    <script src="../JS/jquery-3.7.1.min.js" defer></script>
-    <script src="../JS/bootstrap.bundle.min.js" defer></script>
-    <script src="../JS/nav.js" defer></script>
-    <script src="../JS/table.js" defer></script>
-    <script src="../JS/passwordToggle.js" defer></script>
-    <script src="../JS/login.js" defer></script>
-    <script src="../JS/createAccount.js" defer></script>
-    <script src="../JS/modalSwitch.js" defer></script>
-    <script src="../JS/donhangchitiet.js" defer></script>
     <link rel="stylesheet" href="../CSS/luxe.css">
 </head>
-
 <body>
- <!-- header -->
- <div class="container-header">
-  <?php
-
-      $p->linkheader()
-    ?>
-    <div class="top-nap row">
-      <div class="row">
-        <div class="col-3 map pt-1">
-          <div class="icon-map">
-            <span><img src="https://i.postimg.cc/9F7XQPxp/OIG3-0j-Nk7-1.jpg" alt="" style="width: 20px;height: 20px; border-radius: 50%;"></span>
-            <a href="../PHP/About Us.php">&nbsp;Về chúng tôi</a>
-          </div>
+<div class="checkout-hero">
+    <div class="checkout-hero__inner">
+        <div class="checkout-title">
+            <p class="checkout-eyebrow">Chạy Đi Shop · Thanh toán an toàn</p>
+            <h1>Hoàn tất đơn hàng</h1>
+            <p class="checkout-subtitle">Xác nhận thông tin giao hàng và kiểm tra lại sản phẩm trước khi thanh toán.</p>
         </div>
-        <div class="col-6 logo mt-2 pt-1 justify-content-center d-flex"  >
-          <h4 class="text-uppercase text-center fw-bold">
-            <?php
-
-                $link = "index.php";
-                if ($id_user) {
-                    $link .= "?id_user=" . $id_user;
-                }
-              ?>
-            <a href="<?php
- echo $link; ?>" style="text-decoration: none;">Chạy Đi Shop</a>
-          </h4>
+        <div class="checkout-actions">
+            <a class="ghost-btn" href="Bag.php">Quay lại giỏ hàng</a>
+            <a class="ghost-btn" href="Category.php">Tiếp tục mua sắm</a>
         </div>
-        <div class=" col-3 icon d-flex justify-content-end pt-2" >
-          <i class=" d-none d-md-inline">
-            <a href="#" id="searchIcon">
-              <img src="https://i.postimg.cc/jSYxwWmr/timkiem.png" alt="Tìm kiếm" id="timkiem" >
-            </a>
-          </i>
-          <i>
-            <?php
-
-            if ($id_user) {
-              $p->anhdaidien("SELECT * FROM login_user WHERE user_id = $id_user");
-            } 
-            else {
-              echo '<a href="#"><img src="https://i.postimg.cc/kgNnxJPR/nutdangnhap.png" alt="Đăng nhập" id="nutdangnhap"></a>';
-            }
-            ?>
-          </i>
-          <i>
-            <?php
-
-                $links = "Bag.php";
-                if ($id_user) {
-                    $links .= "?id_user=".$id_user;
-                }
-                echo '<a href="'.$links.'"><img src="https://i.postimg.cc/pd2PCwPG/giohang.png" alt="Giỏ hàng" id="giohang"></a>';
-            ?>
-            
-          </i>
-        </div>
-      </div>
-      <div class="row">
-        <div class="bottom-nap row col-12 d-flex justify-content-center">
-          <ul>
-            <li><a href="#">Bộ sưu tập thể thao</a></li>
-            <li><a href="#">Đồ chạy bộ</a></li>
-            <li><a href="#">Đồ gym & training</a></li>
-            <li><a href="#">Giày & phụ kiện</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>      
-  </div>
-
-<!-- nút tìm kiếm -->
-<div id="searchTable" >
-    <div class="row">
-      <div class="col-12 d-flex justify-content-center "><input type="search" class="form-control" placeholder="Tìm kiếm..." aria-label="Tìm kiếm">
-        <button type="button" class="btn-close pt-4 align-items-lg-start" data-bs-dismiss="modal" aria-label="Close"></button></div>
-      
     </div>
 </div>
-  <!-- table đăng kí, đăng nhập -->
-  <div id="loginTable" class="d-none">
-    <div class="table-container" style="position: absolute; top: 50px; right: 0;">
-      <h5 class="table-title" style="color: #504f4f;">CHÀO MỪNG</h5>
-      <div class="row">
-        <tr>
-          <?php
 
-            if ($id_user) {
-              echo'<td><a href="../CLASS/logout.php" id="dangxuat">Đăng xuất</a></td>';
-              ;
-            } 
-            else {
-              echo '<td><a href="#" id="dangnhap">Đăng nhập</a></td>';
-            }
-          ?>
-        </tr>
-      </div>
-      <div class="row">
-        <tr>
-          <td>
-            <a href="#" id="dangky">Tạo tài khoản</a>
-            <p style="font-size: 9px;">Thành viên nhận ưu đãi VIP và được xem trước sản phẩm mới</p>
-          </td>
-        </tr>
-      </div>
+<div class="container checkout-shell">
+    <div class="checkout-steps">
+        <div class="step active">
+            <span class="step-dot"></span>
+            <span class="step-text">Giỏ hàng</span>
+        </div>
+        <div class="step active">
+            <span class="step-dot"></span>
+            <span class="step-text">Thông tin</span>
+        </div>
+        <div class="step">
+            <span class="step-dot"></span>
+            <span class="step-text">Thanh toán</span>
+        </div>
     </div>
-  </div>
-  <!-- modal đăng kí -->
-  <div class="row">
-    <div class="modal fade" id="createAccountModal" tabindex="-1" aria-labelledby="ModalFormLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-          <div class="modal-content" id="register-modal-content">
-            <div class="modal-body" id="register-modal-body">
-                <button type="button" class="btn-close " id="dong_dk" data-bs-dismiss="modal" aria-label="Close"></button>
-                <div class="myform bg-white">
-                    <h1 class="text-center text-uppercase ">trở thành thành viên</h1>
-                    <div class="bullet-container">
-                        <div class="bullet-item">
-                            <div class="buller-point"></div>
-                            <div class="post-header-text">Theo dõi tác động của đơn hàng</div>
+
+    <div class="row g-4">
+        <div class="col-lg-7">
+            <div id="thongtin_donhang" class="card-surface">
+                <div class="card-header">
+                    <h3>Thông tin đơn hàng</h3>
+                    <span class="card-badge"><?php echo $donhang_tam ? count($donhang_tam['san_pham']) : 0; ?> sản phẩm</span>
+                </div>
+                <div id="danh_sach_giohang" class="order-list">
+                    <?php if (!$donhang_tam): ?>
+                        <div class="empty-state">
+                            <p>Chưa có đơn hàng tạm. Vui lòng chọn sản phẩm trong giỏ hàng.</p>
+                            <a class="primary-btn" href="Bag.php">Về giỏ hàng</a>
                         </div>
-                        <div class="bullet-item">
-                            <div class="buller-point"></div>
-                            <div class="post-header-text">Đăng ký nhận ưu đãi VIP</div>
+                    <?php else: ?>
+                        <?php
+                        $tong_tien = 0;
+                        foreach ($donhang_tam['san_pham'] as $sp) {
+                            $anh = $sp['anhsp'];
+                            $ten = $sp['tensp'];
+                            $soluong = $sp['so_luong'];
+                            $gia = $sp['gia_ban'];
+                            $sp_tongtien = $sp['thanh_tien'];
+                            $tong_tien += $sp_tongtien;
+                        ?>
+                            <div class="muc_giohang order-item">
+                                <img src="<?php echo $anh; ?>" alt="<?php echo $ten; ?>">
+                                <div class="order-item__content">
+                                    <p class="order-item__name"><?php echo $ten; ?></p>
+                                    <p class="order-item__meta">Số lượng: <?php echo $soluong; ?> · Giá: <?php echo $gia; ?> VND</p>
+                                    <p class="order-item__total">Thành tiền: <?php echo $sp_tongtien; ?> VND</p>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    <?php endif; ?>
+                </div>
+                <?php if ($donhang_tam): ?>
+                    <div class="order-summary">
+                        <div class="summary-row">
+                            <span>Tạm tính</span>
+                            <span><?php echo $tong_tien; ?> VND</span>
                         </div>
-                        <div class="bullet-item">
-                            <div class="buller-point"></div>
-                            <div class="post-header-text">Nhận quyền truy cập sớm sản phẩm mới</div>
+                        <div class="summary-row">
+                            <span>Phí vận chuyển</span>
+                            <span>Miễn phí</span>
+                        </div>
+                        <div class="summary-total">
+                            <span>Tổng thanh toán</span>
+                            <span><?php echo $tong_tien; ?> VND</span>
+                        </div>
+                        <div class="summary-actions">
+                            <form method="POST">
+                                <button type="submit" name="huy_donhang" class="ghost-btn danger">Hủy đơn hàng</button>
+                            </form>
+                            <button class="ghost-btn" type="button" onclick="window.print()">In đơn hàng</button>
                         </div>
                     </div>
-  
-                    <form id="registerForm">
-                      <div class="mb-3 mt-5">
-                          <label for="exampleInputFirstName" class="form-label">Tên</label>
-                          <input type="text" class="form-control" id="exampleInputFirstName" name="exampleInputFirstName" aria-describedby="firstNameError">
-                          <span id="firstNameError" class="error-message" style="color: red;"></span>
-                      </div>
-                      <div class="mb-3 mt-4">
-                          <label for="exampleInputLastName" class="form-label">Họ</label>
-                          <input type="text" class="form-control" id="exampleInputLastName" name="exampleInputLastName" aria-describedby="lastNameError">
-                          <span id="lastNameError" class="error-message" style="color: red;"></span> 
-                      </div>
-                      <div class="mb-3 mt-4">
-                          <label for="exampleInputEmail" class="form-label">Địa chỉ Email</label>
-                          <input type="email" class="form-control" id="exampleInputEmail" name="exampleInputEmail" aria-describedby="emailError">
-                          <span id="emailError" class="error-message" style="color: red;"></span> 
-                      </div>
-                      <div class="mb-3 mt-4">
-                          <label for="exampleInputPassword" class="form-label">Mật khẩu</label>
-                          <input type="password" class="form-control" id="exampleInputPassword" name="exampleInputPassword" aria-describedby="passwordError">
-                          <span id="passwordError" class="error-message" style="color: red;"></span> 
-                          <span onclick="togglePassword('exampleInputPassword', 'togglePasswordIcon')" class="eye-icon1" style="cursor: pointer;">
-                              <img src="https://i.postimg.cc/1X6pBnHZ/eyeOpen.png" id="togglePasswordIcon" alt="Bật/tắt mật khẩu">
-                          </span>
-                      </div>
-                      <div class="mb-3 mt-4">
-                          <label for="<div class="mb-3 mt-4">
-                          <div class="d-flex align-items-center gap-2">
-<?php
-
-session_start();
-$id_user = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : null; 
-if (!isset($_SESSION['user_email']) || $_SESSION['user_role'] !== 'user') {
-    echo '<meta http-equiv="refresh" content="0;url=Category.php">';
-    exit(); 
-}
-?>
-<?php
-
-include("../CLASS/Xuatttsanpham.php");
-$p = new dulieu(); 
-?>
-
-
-
-
-
-
-
-
-
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div id="khung_nhap_thongtin" class="card-surface">
+                <div class="card-header">
+                    <h3>Thông tin giao hàng</h3>
+                    <span class="card-badge">Bắt buộc</span>
+                </div>
+                <form id="form_thanhtoan" method="POST">
+                    <div class="field-group">
+                        <label for="ho_va_ten">Họ và tên</label>
+                        <input class="o_nhap" type="text" id="ho_va_ten" name="ho_va_ten" placeholder="Nguyễn Văn A" required>
+                    </div>
+                    <div class="field-group">
+                        <label for="email">Email</label>
+                        <input class="o_nhap" type="email" id="email" name="email" placeholder="email@example.com" required>
+                    </div>
+                    <div class="field-group">
+                        <label for="dia_chi">Địa chỉ</label>
+                        <input class="o_nhap" type="text" id="dia_chi" name="dia_chi" placeholder="Số nhà, đường, phường/xã" required>
+                    </div>
+                    <div class="field-group">
+                        <label for="so_dien_thoai">Số điện thoại</label>
+                        <input class="o_nhap" type="text" id="so_dien_thoai" name="so_dien_thoai" placeholder="0xxxxxxxxx" required>
+                    </div>
+                    <div class="field-group">
+                        <label for="thanh_pho">Thành phố</label>
+                        <input class="o_nhap" type="text" id="thanh_pho" name="thanh_pho" placeholder="TP.HCM / Hà Nội" required>
+                    </div>
+                    <div class="field-group">
+                        <label for="ghi_chu">Ghi chú</label>
+                        <textarea class="o_nhap" id="ghi_chu" name="ghi_chu" rows="3" placeholder="Giao giờ hành chính, gọi trước khi giao..."></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" id="xacnhan_donhang" class="primary-btn" disabled>Xác nhận đơn hàng</button>
+                        <p class="form-note">Bằng việc xác nhận, bạn đồng ý với chính sách đổi trả và điều khoản dịch vụ.</p>
+                    </div>
+                </form>
+            </div>
+            <div class="card-surface support-card">
+                <h4>Cần hỗ trợ nhanh?</h4>
+                <p>Hotline: 097.114.1140 · Email: hotro@chaydi.shop</p>
+                <div class="support-actions">
+                    <a class="ghost-btn" href="tel:0971141140">Gọi ngay</a>
+                    <a class="ghost-btn" href="mailto:hotro@chaydi.shop">Gửi email</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../JS/jquery-3.7.1.min.js"></script>
+<script src="../JS/donhangchitiet.js"></script>
+</body>
+</html>

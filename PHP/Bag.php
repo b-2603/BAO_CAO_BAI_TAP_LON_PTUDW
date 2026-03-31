@@ -12,6 +12,20 @@ if (!isset($_SESSION['user_email']) || $_SESSION['user_role'] !== 'user') {
 include("../CLASS/Xuatttsanpham.php");
 $p = new dulieu();
 
+$is_post = $_SERVER['REQUEST_METHOD'] === 'POST';
+if ($is_post && isset($_POST['selected_items']) && is_array($_POST['selected_items']) && count($_POST['selected_items']) > 0) {
+  $p->dssp_donhang($_POST['selected_items']);
+  exit();
+}
+
+if ($is_post && (!isset($_POST['selected_items']) || count($_POST['selected_items']) === 0)) {
+  echo "<script>
+      alert('Vui lòng chọn ít nhất 1 sản phẩm để thanh toán!');
+      window.location.href = 'Bag.php';
+    </script>";
+  exit();
+}
+
 $gh_tongtien = 0;
 $item_count = 0;
 $conn = $p->ketnoi();
@@ -53,7 +67,7 @@ if ($rs_cart && $row_cart = mysqli_fetch_assoc($rs_cart)) {
     <script src="../JS/modalSwitch.js" defer></script>
     <script src="../JS/updategiohangg.js" defer></script>
 </head>
-<body>
+<body class="cart-body">
  <!-- header -->
  <div class="container-header">
   <?php $p->linkheader(); ?>
@@ -166,20 +180,15 @@ if ($rs_cart && $row_cart = mysqli_fetch_assoc($rs_cart)) {
 </div>
 
 <!-- phần nội dung -->
-<div class="content">
+<div class="content cart-page">
   <div class="cart-list">
+    <h2 class="cart-title">Giỏ hàng của bạn</h2>
     <?php if ($item_count > 0): ?>
-      <form id="cart-form" class="cart-form">
+      <form id="cart-form" class="cart-form" method="POST">
         <?php $p->xuatgiohang("SELECT * FROM giohang WHERE gh_iduser = '$id_user'"); ?>
+        <div class="total-price">Tổng: <span id="cart-total"><?php echo $gh_tongtien; ?></span></div>
+        <button class="checkout-button" type="submit">Thanh toán</button>
       </form>
-      <div class="total-price">Tổng: <span id="cart-total"><?php echo $gh_tongtien; ?></span></div>
-      <?php
-        $checkout_link = "Donhang.php";
-        if ($id_user) {
-          $checkout_link .= "?id_user=" . $id_user;
-        }
-      ?>
-      <button class="checkout-button"><a href="<?php echo $checkout_link; ?>">Thanh toán</a></button>
     <?php else: ?>
       <div class="text-center py-5">Giỏ hàng của bạn đang trống.</div>
     <?php endif; ?>
