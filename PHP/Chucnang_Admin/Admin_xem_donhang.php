@@ -53,7 +53,11 @@
                 <label for="trangthai"><strong>🛠️ Trạng thái:</strong></label>
                 <select name="trangthai">
                     <?php
+<<<<<<< HEAD
+                    $options = array('Cho_xac_nhan', 'Da_thanh_toan', 'Thanhtoan_Thatbai', 'Dang_giao', 'Da_giao', 'Da_huy');
+=======
                     $options = ['Cho_xac_nhan', 'Da_thanh_toan', 'Thanhtoan_Thatbai', 'Dang_giao', 'Da_giao', 'Da_huy'];
+>>>>>>> 1e04d946ee1b11827e820da189420f51ca0a5a0e
                     foreach ($options as $opt) {
                         echo "<option value='$opt'" . ($trangthai == $opt ? " selected" : "") . ">$opt</option>";
                     }
@@ -69,4 +73,7 @@
     </div>
 </body>
 </html>
+<<<<<<< HEAD
+=======
 
+>>>>>>> 1e04d946ee1b11827e820da189420f51ca0a5a0e
