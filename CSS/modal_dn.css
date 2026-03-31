@@ -1,0 +1,117 @@
+#register-modal-content {
+  width: 86%;
+  margin: 0 auto;
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid rgba(31, 107, 255, 0.2);
+  box-shadow: 0 20px 50px rgba(2, 6, 23, 0.2);
+}
+
+#register-modal-body {
+  padding: 0;
+}
+
+#dong_dn {
+  position: absolute;
+  right: 0;
+  padding: 1em;
+  color: #0f172a;
+}
+
+h1 {
+  font-size: 2.4em;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #0f172a;
+}
+
+.myform {
+  padding: 2em;
+  max-width: 100%;
+  color: #0b1020;
+  background-color: #fff;
+  border-radius: 18px;
+  box-shadow: inset 0 0 0 1px rgba(31, 107, 255, 0.08);
+}
+
+@media (max-width: 576px) {
+  .myform {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}
+
+#exampleInputEmail1:focus,
+#exampleInputPassword1:focus {
+  box-shadow: 0 0 0 3px rgba(31, 107, 255, 0.2);
+}
+
+#exampleInputPassword1,
+#exampleInputEmail1 {
+  background-color: #f5f7ff;
+  color: #0b1020;
+  padding: 10px 12px;
+  border: 1px solid rgba(31, 107, 255, 0.2);
+  border-radius: 10px;
+}
+
+.myform .btn {
+  width: 100%;
+  font-weight: 800;
+  background: linear-gradient(135deg, #1f6bff 0%, #14f1c9 100%);
+  border-radius: 999px;
+  padding: 0.6em 0;
+  color: #0b1020;
+  border: none;
+  box-shadow: 0 12px 24px rgba(31, 107, 255, 0.25);
+}
+
+.myform .btn:hover {
+  filter: brightness(0.98);
+}
+
+.form-label {
+  color: #0b1020;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.myform p {
+  text-align: center;
+  padding-top: 2em;
+  color: #475569;
+}
+
+.myform p a {
+  color: #1f6bff;
+  text-decoration: none;
+}
+
+.myform p a:hover {
+  text-decoration: underline;
+}
+
+.mb-3 {
+  position: relative;
+}
+
+#togglePasswordIcon {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.eye-icon {
+  position: absolute;
+  top: 45%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 1;
+}
+
+#exampleInputPassword1 {
+  padding-right: 30px;
+}

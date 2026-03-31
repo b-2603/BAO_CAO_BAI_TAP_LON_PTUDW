@@ -1,0 +1,240 @@
+:root {
+  --dark: #0b1020;
+  --dark-2: #111827;
+  --accent: #1f6bff;
+  --accent-2: #14f1c9;
+  --muted: #94a3b8;
+}
+
+#footer {
+  background: linear-gradient(180deg, #f7f9ff 0%, #eef3ff 100%);
+  color: var(--dark-2);
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-md-4 .footer-contact {
+  flex: 0 0 39.5%;
+}
+
+.col-md-2 .footer-contact {
+  flex: 0 0 15%;
+}
+
+@media (max-width: 991px) {
+  .col-md-4 {
+    flex: 0 0 100%;
+  }
+  .col-md-2 {
+    flex: 0 0 50%;
+  }
+  .footer-contact {
+    margin-bottom: 20px;
+  }
+  #footer_contact_help {
+    margin-left: -20px;
+  }
+}
+
+.footernav_contact_list,
+.footer-columns_contact_list,
+.footernav_legal_li {
+  list-style-type: none;
+}
+
+.footernav_legal_li,
+.footernav_social_li,
+.footernav_social_li {
+  display: inline-block;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.footernav_social_ul {
+  margin-right: 20px;
+}
+
+.footernav_social_li {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.footernav_social_link {
+  text-decoration: none;
+  color: #1f2937;
+  transition: color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footernav_social_link img.bi:hover {
+  border-radius: 50%;
+  box-shadow: 0 0 18px rgba(31, 107, 255, 0.35), 0 0 18px rgba(20, 241, 201, 0.35);
+}
+
+.footernav_social_link i.bi {
+  color: #0f172a;
+}
+
+#bi-facebook,
+#bi-pinterest {
+  margin-top: -5px;
+}
+
+.footernav_social_link:hover i.bi {
+  text-shadow: 0 0 8px rgba(31, 107, 255, 0.35);
+}
+
+.footernav_legal_link,
+.footernav_legal_copyright {
+  text-decoration: none;
+  color: #475569;
+  font-size: 12.5px;
+}
+
+.footernav_legal_ul {
+  left: 20px;
+  top: 12px;
+  position: absolute;
+}
+
+.fooernav_social_ul {
+  top: 12px;
+  right: 20px;
+  position: absolute;
+}
+
+.footernav_contact_us_phone,
+.footernav_contact_us_email,
+.footer-columns_link {
+  text-decoration: none;
+  color: #1f2937;
+}
+
+.footerlink_contact_us_email,
+.footerlink_contact_us_phone {
+  color: var(--accent);
+}
+
+.footernav_contact_li .footernav_contact_us_phone:hover,
+.footernav_contact_li .footernav_contact_us_email:hover,
+.footer-columns_contact_li .footer-columns_link:hover,
+.footernav_legal_li .footernav_legal_link:hover {
+  color: var(--accent);
+}
+
+.footernav_contact_title,
+.footer-columns_contact_title {
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.footer-columns_link {
+  transition: all 0.3s ease;
+  font-size: 0.9em;
+}
+
+.footer-columns_link:hover {
+  transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+  .footernav_section_social {
+    margin-bottom: 15px;
+  }
+  .fooernav_social_ul,
+  .footernav_legal_ul {
+    position: static;
+    text-align: center;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 1199px) {
+  .footernav_section_social {
+    margin-bottom: 15px;
+  }
+  .fooernav_social_ul,
+  .footernav_legal_ul {
+    position: static;
+    text-align: center;
+    margin: 0 auto;
+  }
+}
+
+#id1 {
+  margin-bottom: 20px;
+}
+
+#p {
+  font-size: 14px;
+}
+
+.footernav_contact {
+  width: 100%;
+  height: 220px;
+  background: linear-gradient(135deg, #ffffff 0%, #edf2ff 100%);
+  border: 1px solid rgba(31, 107, 255, 0.12);
+}
+
+.footernav_NewSeller {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, #0f172a 0%, #1f2937 100%);
+  color: #e5e7eb;
+}
+
+.label {
+  letter-spacing: 1px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.footernav_NewSeller p,
+.footernav_NewSeller h2 {
+  color: #e5e7eb;
+}
+
+.footer-columns {
+  margin-top: 20px;
+  padding-left: 10px;
+}
+
+.footer-columns_contact_title {
+  text-align: left;
+  display: block;
+  margin-bottom: 10px;
+  padding-left: 5px;
+}
+
+.footer-columns_contact_list {
+  padding-left: 5px;
+}
+
+.footer-columns_link {
+  font-size: 14px;
+}
+
+.footernav_NewSeller {
+  padding: 35px;
+}
+
+.email-input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.submit-button {
+  border-left: 0;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+  border-color: transparent;
+  color: #0b1020;
+  width: 40px;
+}
+
+.submit-button:hover {
+  filter: brightness(0.95);
+}

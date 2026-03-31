@@ -1,0 +1,25 @@
+.load-more-btn {
+  background: linear-gradient(135deg, #1f6bff 0%, #14f1c9 100%);
+  color: #0b1020;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 22px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 10px 20px rgba(31, 107, 255, 0.25);
+}
+
+.load-more-btn:hover {
+  transform: translateY(-2px);
+}
+
+.load-more-btn:active {
+  transform: scale(0.98);
+}
+
+.load-more-btn.disabled {
+  background: #cbd5f5;
+  cursor: not-allowed;
+}

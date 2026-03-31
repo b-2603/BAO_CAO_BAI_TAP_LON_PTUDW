@@ -1,0 +1,109 @@
+body {
+  font-family: 'Space Grotesk', 'Segoe UI', sans-serif;
+  background: #f4f7ff;
+  color: #0f172a;
+  margin: 0;
+  padding: 0;
+}
+
+#hop_dung_noidung {
+  height: 420px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#thongtin_donhang {
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 14px;
+  border: 1px solid rgba(31, 107, 255, 0.12);
+  box-shadow: 0 16px 32px rgba(2, 6, 23, 0.12);
+}
+
+h3 {
+  color: #0f172a;
+  font-weight: 700;
+  margin-top: 0;
+}
+
+#danh_sach_giohang {
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.muc_giohang {
+  display: flex;
+  align-items: center;
+  background: #f8fbff;
+  margin-bottom: 12px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.muc_giohang img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 15px;
+}
+
+.muc_giohang p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+#tong_tien {
+  font-size: 18px;
+  font-weight: 800;
+  margin-top: 10px;
+  color: #1f6bff;
+}
+
+#khung_nhap_thongtin {
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 14px;
+  border: 1px solid rgba(31, 107, 255, 0.12);
+  box-shadow: 0 16px 32px rgba(2, 6, 23, 0.12);
+}
+
+.o_nhap {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid rgba(31, 107, 255, 0.2);
+  border-radius: 8px;
+  font-size: 14px;
+  background: #f8fbff;
+}
+
+.khoang_cach_duoi {
+  margin-bottom: 10px;
+}
+
+#phuong_thuc_thanhtoan {
+  margin-top: 15px;
+}
+
+.nut_bam {
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 700;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#nut_momo_qr,
+#nut_momo_atm {
+  background: linear-gradient(135deg, #1f6bff 0%, #14f1c9 100%);
+  color: #0b1020;
+  box-shadow: 0 10px 20px rgba(31, 107, 255, 0.25);
+}
+
+.nut_bam:hover {
+  transform: translateY(-2px);
+}
